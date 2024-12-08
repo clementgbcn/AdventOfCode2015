@@ -36,7 +36,7 @@ class Day(ABC):
 
     def process_star(self, star) -> list[list[any]]:
         # Run the test
-        test_case = InputParser(self.day_value, TestEnum.TEST, star).get_iterator()
+        test_case = InputParser(self.day_value, TestEnum.TEST, star)
         test_result = self.solution_star(star, test_case, TestEnum.TEST)
         expected_result = (
             self.FIRST_STAR_TEST_RESULT
@@ -48,7 +48,7 @@ class Day(ABC):
         ), f"Test failed for {star} star at Day {self.day_value}: {test_result} != {expected_result}"
         # Compute the result
         start_input_time = time.time_ns()
-        input_case = InputParser(self.day_value, TestEnum.PROBLEM, star).get_iterator()
+        input_case = InputParser(self.day_value, TestEnum.PROBLEM, star)
         input_result = self.solution_star(star, input_case, TestEnum.PROBLEM)
         end_input_time = (time.time_ns() - start_input_time) / 1000000
         return [
@@ -57,6 +57,6 @@ class Day(ABC):
 
     def get_result(self, star, input_type) -> Result:
         # Run the test
-        test_case = InputParser(self.day_value, input_type, star).get_iterator()
+        test_case = InputParser(self.day_value, input_type, star)
         test_result = self.solution_star(star, test_case, input_type)
         return Result(self.day_value, input_type, star, test_result)
